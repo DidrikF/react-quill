@@ -1,5 +1,8 @@
 'use strict';
 
+// I guess I can just copy the source directory to my project to modify it...
+// It seems har to partly use quills toolbar and a custom toolbar...
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var createClass = require('create-react-class');
@@ -352,6 +355,8 @@ var QuillComponent = createClass({
 	},
 
 	render: function() {
+		// if I add the toolbar here, both the toolbar and quill will coexist, making it easier to make the component react to quill and quill react to the component
+		// If the toolbar is external new features cannot be added. 
 		return DOM.div({
 			id: this.props.id,
 			style: this.props.style,
