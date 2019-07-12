@@ -58,7 +58,8 @@ var defaultItems = [
 		{ type:'underline', label:'Underline' },
 		{ type:'color', label:'Color', items:defaultColors },
 		{ type:'background', label:'Background color', items:defaultColors },
-		{ type:'link', label:'Link' }
+		{ type:'link', label:'Link' },
+		{ type:'sideimage', label:'Side Image' }
 	]},
 
 	{ label:'Blocks', type:'group', items: [
@@ -172,6 +173,7 @@ var QuillToolbar = createClass({
 			case 'indent':
 			case 'image':
 			case 'video':
+			case 'sideimage': // Added
 				return this.renderButton(item, key);
 			default:
 				return this.renderAction(item, key);

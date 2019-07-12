@@ -2,6 +2,49 @@
 
 var Quill = require('quill');
 
+/* this is where all quill related code used by the react component is located. 
+	It makes sense to extend quill here.
+*/
+
+let Inline = Quill.import('blots/inline');
+let Block = Quill.import('blots/block');
+let BlockEmbed = Quill.import('blots/block/embed');
+
+
+class SideImage extends BlockEmbed {
+	static create(value) {
+		let node = super.create();
+		node.setAttribute('alt', value.alt);
+		node.setAttribute('src', value.url);
+		// conditinal logic to set the styling of the image...
+		node.setAttribute('style', 'width: 50%; float: right;')
+		return node;
+	}
+
+	static value(node) {
+		return {
+			alt: node.getAttribute('alt'),
+			url: node.getAttribute('src'),
+			style: node.getAttribute('style')
+		};
+	}
+}
+ImageBlot.blotName = 'sideimage';
+ImageBlot.tagName = 'img';
+
+Quill.register(SideImage)
+/*
+$('#image-button').click(function() {
+  let range = quill.getSelection(true); // need the editor instance. 
+  quill.insertEmbed(range.index, 'image', {
+    alt: 'Quill Cloud',
+    url: 'https://quilljs.com/0.20/assets/images/cloud.png'
+  }, Quill.sources.USER);
+  quill.setSelection(range.index + 1, Quill.sources.SILENT);
+  $('#sidebar-controls').hide();
+});
+*/
+
 var QuillMixin = {
 
 	/**
